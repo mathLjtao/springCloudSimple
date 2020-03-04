@@ -15,6 +15,10 @@ public class ConsumerUserApplication {
         SpringApplication.run(ConsumerUserApplication.class, args);
     }
 
+    /**
+     *
+     * @return
+     */
     @LoadBalanced //代表启动Ribbon,开启负载均衡机制
     @Bean
     public RestTemplate restTemplate(){
