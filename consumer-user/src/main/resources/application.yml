@@ -5,6 +5,7 @@ eureka:
   instance:
     prefer-ip-address: true #注册服务的时候使用服务的ip地址 学习：https://study.163.com/course/courseMain.htm?courseId=1209401930
   client:
+    register-with-eureka: false #不把自己注册到eureka
     service-url:
       defaultZone: http://localhost:8761/eureka/
 
