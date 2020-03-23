@@ -1,3 +1,4 @@
+#https://www.cnblogs.com/mathlin/p/12549114.html   eureka server高可用设置
 server:
   port: 8761
 eureka:

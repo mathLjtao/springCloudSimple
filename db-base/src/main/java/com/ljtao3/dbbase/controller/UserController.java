@@ -53,6 +53,6 @@ public class UserController {
     }
     @PostMapping("userInfo3")
     public JsonData userInfo2(@RequestBody HashMap map){
-        return JsonData.success(map.toString());
+        return JsonData.success(map);
     }
 }

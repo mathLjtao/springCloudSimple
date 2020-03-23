@@ -1,0 +1,12 @@
+#https://www.cnblogs.com/mathlin/p/12549114.html 高可用
+server:
+  port: 8762
+eureka:
+  instance:
+    hostname: eureka-server #eureka实例的主机名
+  client:
+    #register-with-eureka: false #不把自己注册到eureka
+    #fetch-registry: false #不从eureka上获取服务的注册信息
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+

@@ -1,12 +1,5 @@
 
 .idea
-.idea/inspectionProfiles/Project_Default.xml
-.idea/workspace.xml
-.idea/workspace.xml
-.idea/compiler.xml
-.idea/compiler.xml
-.idea/encodings.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/workspace.xml
-db-base/.mvn/wrapper/maven-wrapper.jar
+db-base/mvnw
+db-base/mvnw.cmd
+db-base/.mvn
