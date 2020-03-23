@@ -32,6 +32,7 @@ public class UserController {
     @GetMapping("/buyTicket")
     public String buyTicket(){
         System.out.println("..");
+        //这里可以用服务名来调用，是Ribbon的作用
         return restTemplate.getForObject("http://PROVIDER-TICKET/getTicket",String.class);
     }
 
