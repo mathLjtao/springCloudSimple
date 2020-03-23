@@ -5,7 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
+
+import java.nio.charset.Charset;
 
 @EnableDiscoveryClient //开启发现服务功能
 @SpringBootApplication
@@ -16,12 +19,15 @@ public class ConsumerUserApplication {
     }
 
     /**
-     *
+     * 创建指定字符集的RestTemplate
      * @return
      */
     @LoadBalanced //代表启动Ribbon,开启负载均衡机制
     @Bean
     public RestTemplate restTemplate(){
-        return  new RestTemplate();
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().add(new StringHttpMessageConverter(Charset.forName("utf-8")));
+        return restTemplate;
+
     }
 }
