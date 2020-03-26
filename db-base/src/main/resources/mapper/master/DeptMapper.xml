@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ljtao3.dbbase.dao.master.DeptDao">
+	<resultMap id="BaseResultMap" type="com.ljtao3.dbbase.entity.master.Dept">
+		<result column="id" property="id" />
+		<result column="dept_name" property="deptName" />
+		<result column="parent_id" property="parentId" />
+		<result column="status" property="status" />
+	</resultMap>
+
+	<parameterMap id="User" type="com.ljtao3.dbbase.entity.master.Dept"/>
+
+	<sql id="Base_Column_List">
+		id,dept_name,parent_id,status
+	</sql>
+
+	<select id="getByParentId" resultMap="BaseResultMap" parameterType="int">
+		select
+		<include refid="Base_Column_List" />
+		from dept
+		where parent_id = #{parentId}
+	</select>
+
+	<!-- 查询所有子部门，不包括自己。简单mysql cte递归表达式 ,-->
+	<select id="getDeptChildListById" resultMap="BaseResultMap" parameterType="int">
+		with recursive r(id,parent_id,status) as
+		(
+-- 			如果要包括自己，将这里的parent_id 改为id
+			select id,parent_id,status from dept where parent_id=#{parentId} and status='1'
+			union all
+			select dept.id,dept.parent_id,dept.status from r , dept where  r.id=dept.parent_id  and dept.status='1'
+		) select dept.* from r left join dept on r.id=dept.id
+	</select>
+
+
+	<!-- resultMap 是上面自己写的，resultType是另一种class模板 -->
+	<select id="getById1" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from dept
+		where id = #{id}
+	</select>
+
+
+</mapper>

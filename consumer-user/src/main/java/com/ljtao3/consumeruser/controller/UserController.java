@@ -2,6 +2,7 @@ package com.ljtao3.consumeruser.controller;
 
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.ljtao3.consumeruser.entity.User;
+import com.ljtao3.consumeruser.feign.DbbaseProductFeignClient;
 import com.ljtao3.consumeruser.util.JsonData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -24,6 +25,9 @@ import java.util.Map;
 public class UserController {
     @Autowired
     RestTemplate restTemplate;
+
+    @Autowired
+    private DbbaseProductFeignClient dbbaseProductFeignClient;
 
     @Autowired
     private LoadBalancerClient loadBalancerClient;
@@ -102,5 +106,14 @@ public class UserController {
         else{
             return null;
         }
+    }
+    /*
+        使用feign框架调用远程微服务接口
+     */
+    @GetMapping("/userInfo4")
+    public JsonData getUserInfo4(String id){
+        JsonData userInfo = dbbaseProductFeignClient.getUserInfo(id);
+        //JsonData userInfo = dbbaseProductFeignClient.getUserInfo4(id);
+        return userInfo;
     }
 }

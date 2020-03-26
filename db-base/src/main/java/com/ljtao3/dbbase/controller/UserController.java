@@ -29,7 +29,6 @@ public class UserController {
     private UserRoleDao userRoleDao;
     @GetMapping("userInfo")
     public JsonData userInfo(String id){
-        System.out.println(id);
         User user = userDao.getById(1);
         List<Role> roleList=new ArrayList<>();
         List<Integer> roleIdList = userRoleDao.getRoleIdsByUserId(user.getId());
@@ -54,5 +53,18 @@ public class UserController {
     @PostMapping("userInfo3")
     public JsonData userInfo2(@RequestBody HashMap map){
         return JsonData.success(map);
+    }
+
+    @GetMapping("userInfo4/{id}")
+    public JsonData userInfo3(@PathVariable  String id){
+        System.out.println(id);
+        User user = userDao.getById(Integer.valueOf(id));
+        List<Role> roleList=new ArrayList<>();
+        List<Integer> roleIdList = userRoleDao.getRoleIdsByUserId(user.getId());
+        for (Integer roleId:roleIdList){
+            roleList.add(roleDao.getRoleById(roleId));
+        }
+        user.setRoles(roleList);
+        return JsonData.success(user);
     }
 }
