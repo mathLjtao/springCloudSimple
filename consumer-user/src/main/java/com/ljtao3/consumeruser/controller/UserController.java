@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.ljtao3.consumeruser.entity.User;
 import com.ljtao3.consumeruser.feign.DbbaseProductFeignClient;
 import com.ljtao3.consumeruser.util.JsonData;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -112,6 +114,7 @@ public class UserController {
      */
     @GetMapping("/userInfo4")
     public JsonData getUserInfo4(String id){
+        System.out.println("id----------");
         JsonData userInfo = dbbaseProductFeignClient.getUserInfo(id);
         //JsonData userInfo = dbbaseProductFeignClient.getUserInfo4(id);
         return userInfo;

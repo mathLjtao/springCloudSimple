@@ -27,3 +27,34 @@ eureka:
 logging:
   level:
     com.ljtao3.consumeruser.feign.DbbaseProductFeignClient: DEBUG
+
+#在feign中开启对hystrix的支持
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000 #默认的连接超时时间1秒，若一秒没有返回数据，自动的触发降级逻辑。上面的feign超时时间也要一起设置。
+#      circuitBreaker:
+#        requestVolumeThreshold: 5
+#        sleepWindowInMilliseconds : 2000   #时间
+#  threadpool:
+#    default:
+#      coreSize: 10  # 全局配置
+
+
+#暴露hystrix所有监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

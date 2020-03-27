@@ -1,7 +1,9 @@
 package com.ljtao3.consumeruser.feign;
 
 import com.ljtao3.consumeruser.config.FeignLogConfiguration;
+import com.ljtao3.consumeruser.feign.hytrix.DbbaseProductFeignClientCallBack;
 import com.ljtao3.consumeruser.util.JsonData;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,12 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @FeignClient
  *  name : 服务提供者的名称
  */
-@FeignClient(name="DB-BASE",configuration = FeignLogConfiguration.class)
+@FeignClient(name="DB-BASE",configuration = FeignLogConfiguration.class,fallback = DbbaseProductFeignClientCallBack.class)
 public interface DbbaseProductFeignClient {
     public final static String  USER_API="/user";
     /*
         需要配置调用微服务的接口。
      */
+
     @RequestMapping(value=USER_API+"/userInfo",method = RequestMethod.GET)
     JsonData getUserInfo(@RequestParam("id") String id);
 

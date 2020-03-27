@@ -29,6 +29,11 @@ public class UserController {
     private UserRoleDao userRoleDao;
     @GetMapping("userInfo")
     public JsonData userInfo(String id){
+//        try {
+//            Thread.sleep(4000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         User user = userDao.getById(1);
         List<Role> roleList=new ArrayList<>();
         List<Integer> roleIdList = userRoleDao.getRoleIdsByUserId(user.getId());
