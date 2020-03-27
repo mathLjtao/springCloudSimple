@@ -1,7 +1,9 @@
 package com.ljtao3.consumeruser;
 
+import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -34,4 +36,12 @@ public class ConsumerUserApplication {
         return restTemplate;
 
     }
+
+    //开启http://localhost:9102/actuator/hystrix.stream 监控页面，
+//    @Bean
+//    public ServletRegistrationBean hystrixMetricsStreamServlet() {
+//        ServletRegistrationBean registration = new ServletRegistrationBean(new HystrixMetricsStreamServlet());
+//        registration.addUrlMappings("/actuator/hystrix.stream");
+//        return registration;
+//    }
 }

@@ -1,0 +1,19 @@
+server:
+  port: 9200
+
+spring:
+  application:
+    name: HYSTRIX-TURBINE
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/
+
+
+turbine:
+  #要监控的微服务列表，多个用,分隔
+  appConfig: CONSUMER-USER
+  clusterNameExpression: "'default'"
