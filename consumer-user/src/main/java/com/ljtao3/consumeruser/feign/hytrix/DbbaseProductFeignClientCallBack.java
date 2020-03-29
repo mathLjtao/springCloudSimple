@@ -25,5 +25,10 @@ public class DbbaseProductFeignClientCallBack implements DbbaseProductFeignClien
         return JsonData.success("feign调用触发熔断降级方法");
     }
 
+    @Override
+    public JsonData test1(int id) {
+         return JsonData.success("feign调用触发熔断降级方法---test1");
+    }
+
 
 }

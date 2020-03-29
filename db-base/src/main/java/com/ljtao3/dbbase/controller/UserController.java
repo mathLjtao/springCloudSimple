@@ -72,4 +72,14 @@ public class UserController {
         user.setRoles(roleList);
         return JsonData.success(user);
     }
+    @GetMapping("/test1/{id}")
+    public JsonData test1(@PathVariable("id") int id) throws Exception {
+        if (id==1){
+            return JsonData.success(id);
+        }
+        else{
+            throw new Exception("参数错误！");
+        }
+    }
+
 }

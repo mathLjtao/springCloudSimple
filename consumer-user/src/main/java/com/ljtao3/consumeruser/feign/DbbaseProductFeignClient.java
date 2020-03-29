@@ -30,4 +30,7 @@ public interface DbbaseProductFeignClient {
      */
     @RequestMapping(value=USER_API+"/userInfo4/{id}",method = RequestMethod.GET)
     JsonData getUserInfo4(@PathVariable("id") String id);
+
+    @RequestMapping(value=USER_API+"/test1/{id}",method = RequestMethod.GET)
+    JsonData test1(@PathVariable("id") int id);
 }

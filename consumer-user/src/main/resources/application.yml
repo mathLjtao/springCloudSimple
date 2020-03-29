@@ -44,9 +44,10 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 5000 #默认的连接超时时间1秒，若一秒没有返回数据，自动的触发降级逻辑。上面的feign超时时间也要一起设置。
-#      circuitBreaker:
-#        requestVolumeThreshold: 5
-#        sleepWindowInMilliseconds : 2000   #时间
+      circuitBreaker:
+        requestVolumeThreshold: 5 #触发熔断的最小请求次数，默认20 /10秒
+        sleepWindowInMilliseconds : 10000   #熔断多少秒后去尝试请求 默认5 打开状态的时间
+        errorThresholdPercentage: 50 #触发熔断的失败请求最小占比，默认50%
 #  threadpool:
 #    default:
 #      coreSize: 10  # 全局配置

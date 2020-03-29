@@ -14,6 +14,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -118,5 +119,11 @@ public class UserController {
         JsonData userInfo = dbbaseProductFeignClient.getUserInfo(id);
         //JsonData userInfo = dbbaseProductFeignClient.getUserInfo4(id);
         return userInfo;
+    }
+
+    @GetMapping("/test1/{id}")
+    public JsonData test1(@PathVariable("id") int id){
+        JsonData result = dbbaseProductFeignClient.test1(id);
+        return result;
     }
 }
