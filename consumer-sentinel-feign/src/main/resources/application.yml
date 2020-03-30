@@ -1,0 +1,29 @@
+server:
+  port: 9103
+
+spring:
+  application:
+    name: CONSUMER-SENTINEL-FEIGN
+  cloud:
+    sentinel:
+      transport:
+        dashboard: localhost:8080 #sentinel控制台的请求地址
+      eager: true #取消控制台懒加载
+
+eureka:
+  instance:
+    prefer-ip-address: true #注册服务的时候使用服务的ip地址 学习：https://study.163.com/course/courseMain.htm?courseId=1209401930
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+
+
+
+
+
+#在feign中开启对sentinel的支持
+feign:
+  sentinel:
+    enable: true #添加sentinel对feign的支持
+

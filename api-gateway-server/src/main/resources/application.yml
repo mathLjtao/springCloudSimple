@@ -1,0 +1,23 @@
+server:
+  port: 8081
+
+#gateway还可以设置令牌桶算法，还可以结合sentinel设置限流
+spring:
+  application:
+    name: API-GATEWAY-SERVER
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true #开启根据服务名自动转发
+          lower-case-service-id: true #服务名称以小写形式呈现
+
+eureka:
+  instance:
+    prefer-ip-address: true #注册服务的时候使用服务的ip地址
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+
+
